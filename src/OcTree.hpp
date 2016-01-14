@@ -3,8 +3,10 @@
 #include <octomap/AbstractOcTree.h>
 #include <envire_core/items/Item.hpp>
 #include <envire_core/plugin/Plugin.hpp>
+#include <envire_core/serialization/BinaryBufferHelper.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
+
 
 namespace envire { namespace type 
 {
@@ -26,49 +28,32 @@ namespace boost { namespace serialization {
     template<class Archive>
     void load(Archive & ar, envire::type::AbstractOcTreePtr & octree, const unsigned int version)
     {
-        std::stringstream stream;
-        ar >> stream;
-        if(!stream.str().empty())
-            octree.reset(octomap::AbstractOcTree::read(stream));
+        std::vector<uint8_t> buffer;
+        ar >> buffer;
+        if(!buffer.empty())
+        {
+            envire::core::BinaryInputBuffer buffer_helper(buffer);
+            std::istream istream(&buffer_helper);
+            octree.reset(octomap::AbstractOcTree::read(istream));
+        }
     }
 
     template<class Archive>
     void save(Archive & ar, const envire::type::AbstractOcTreePtr & octree, const unsigned int version)
     {
-         std::stringstream stream;
+        std::vector<uint8_t> buffer;
+        buffer.reserve(octree->memoryUsage());
+        envire::core::BinaryOutputBuffer buffer_helper(&buffer);
+        std::ostream ostream(&buffer_helper);
          if(octree.get() != NULL)
-            octree->write(stream);
-         ar << stream;
+            octree->write(ostream);
+         ar << buffer;
     }
 
     template<class Archive>
     void serialize(Archive & ar, envire::type::AbstractOcTreePtr & octree, const unsigned int version)
     {
         split_free(ar, octree, version);
-    }
-
-
-
-    template<class Archive>
-    void load(Archive & ar, std::stringstream & stream, const unsigned int version)
-    {
-        std::string s;
-        ar >> s;
-        stream.clear();
-        stream << s;
-    }
-
-    template<class Archive>
-    void save(Archive & ar, const std::stringstream & stream, const unsigned int version)
-    {
-        std::string s = stream.str();
-        ar << s;
-    }
-
-    template<class Archive>
-    void serialize(Archive & ar, std::stringstream & stream, const unsigned int version)
-    {
-        split_free(ar, stream, version);
     }
 
 }}
