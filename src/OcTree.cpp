@@ -3,4 +3,4 @@
 
 using namespace envire::type;
 
-ENVIRE_REGISTER_PLUGIN( OcTree, AbstractOcTreePtr )
+ENVIRE_REGISTER_PLUGIN( OcTree )
