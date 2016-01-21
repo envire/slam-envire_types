@@ -16,9 +16,6 @@ namespace envire { namespace type
     class OcTree : public envire::core::Item< AbstractOcTreePtr >
     {
         ENVIRE_PLUGIN_HEADER(OcTree)
-    public:
-        OcTree() : envire::core::Item<AbstractOcTreePtr>() {}
-        OcTree(const OcTree& octree) : envire::core::Item<AbstractOcTreePtr>() {this->user_data = octree.user_data;}
     };
 
 }}
