@@ -119,5 +119,11 @@ void OcTreeVisualization::updateDataIntern(envire::type::OcTree const& value)
     reloadTree();
 }
 
+void OcTreeVisualization::updateDataIntern(envire::type::AbstractOcTreePtr const& value)
+{
+    tree.setData(value);
+    reloadTree();
+}
+
 //Macro that makes this plugin loadable in ruby, this is optional.
 VizkitQtPlugin(OcTreeVisualization)

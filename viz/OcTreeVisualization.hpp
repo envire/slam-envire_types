@@ -10,6 +10,7 @@ namespace vizkit3d
 {
     class OcTreeVisualization
         : public vizkit3d::Vizkit3DPlugin<envire::type::OcTree>
+        , public vizkit3d::VizPluginAddType< boost::shared_ptr<octomap::AbstractOcTree> >
         , boost::noncopyable
     {
     Q_OBJECT
@@ -25,7 +26,7 @@ namespace vizkit3d
 
         Q_INVOKABLE void updateData(envire::type::OcTree const &sample)
         {vizkit3d::Vizkit3DPlugin<envire::type::OcTree>::updateData(sample);}
-        Q_INVOKABLE void updateData(envire::type::AbstractOcTreePtr const &sample)
+        Q_INVOKABLE void updateData(boost::shared_ptr<octomap::AbstractOcTree> const &sample)
         {vizkit3d::Vizkit3DPlugin<envire::type::OcTree>::updateData(sample);}
 
     public slots:
@@ -41,7 +42,8 @@ namespace vizkit3d
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
         virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(envire::type::OcTree const& plan);
+        virtual void updateDataIntern(envire::type::OcTree const& value);
+        virtual void updateDataIntern(envire::type::AbstractOcTreePtr const& value);
         void reloadTree() {new_tree = true; setDirty();}
         void redrawTree() {redraw = true; setDirty();}
         
