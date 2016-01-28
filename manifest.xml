@@ -9,6 +9,5 @@
   <depend package="base/cmake" />
   <depend package="base/types" />
   <depend package="envire/envire_core" />
-  <depend package="slam/envire_maps" />
   <depend package="slam/octomap" />
 </package>
