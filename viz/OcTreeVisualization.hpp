@@ -4,7 +4,7 @@
 #include <boost/noncopyable.hpp>
 #include <vizkit3d/Vizkit3DPlugin.hpp>
 #include <osg/Geode>
-#include <envire_types/OcTree.hpp>
+#include <envire_octomap/OcTree.hpp>
 
 namespace vizkit3d
 {
