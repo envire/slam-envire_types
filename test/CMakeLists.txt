@@ -1,2 +1,2 @@
 rock_testsuite(test_suite suite.cpp
-   DEPS envire_types)
+   DEPS envire_octomap)

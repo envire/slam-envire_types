@@ -1,5 +1,5 @@
-#ifndef envire_types_OcTreeVisualization_H
-#define envire_types_OcTreeVisualization_H
+#ifndef envire_octomap_OcTreeVisualization_H
+#define envire_octomap_OcTreeVisualization_H
 
 #include <boost/noncopyable.hpp>
 #include <vizkit3d/Vizkit3DPlugin.hpp>
@@ -9,7 +9,7 @@
 namespace vizkit3d
 {
     class OcTreeVisualization
-        : public vizkit3d::Vizkit3DPlugin<envire::type::OcTree>
+        : public vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>
         , public vizkit3d::VizPluginAddType< boost::shared_ptr<octomap::AbstractOcTree> >
         , boost::noncopyable
     {
@@ -24,10 +24,10 @@ namespace vizkit3d
         OcTreeVisualization();
         ~OcTreeVisualization();
 
-        Q_INVOKABLE void updateData(envire::type::OcTree const &sample)
-        {vizkit3d::Vizkit3DPlugin<envire::type::OcTree>::updateData(sample);}
+        Q_INVOKABLE void updateData(envire::octomap::OcTree const &sample)
+        {vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>::updateData(sample);}
         Q_INVOKABLE void updateData(boost::shared_ptr<octomap::AbstractOcTree> const &sample)
-        {vizkit3d::Vizkit3DPlugin<envire::type::OcTree>::updateData(sample);}
+        {vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>::updateData(sample);}
 
     public slots:
         bool getShowOccupied() {return show_occupied;}
@@ -42,13 +42,13 @@ namespace vizkit3d
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
         virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(envire::type::OcTree const& value);
-        virtual void updateDataIntern(envire::type::AbstractOcTreePtr const& value);
+        virtual void updateDataIntern(envire::octomap::OcTree const& value);
+        virtual void updateDataIntern(envire::octomap::AbstractOcTreePtr const& value);
         void reloadTree() {new_tree = true; setDirty();}
         void redrawTree() {redraw = true; setDirty();}
         
     private:
-        envire::type::OcTree tree;
+        envire::octomap::OcTree tree;
         bool show_occupied;
         bool show_freespace;
         int max_depth;

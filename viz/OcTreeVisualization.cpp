@@ -113,13 +113,13 @@ void OcTreeVisualization::updateMainNode ( osg::Node* node )
     }
 }
 
-void OcTreeVisualization::updateDataIntern(envire::type::OcTree const& value)
+void OcTreeVisualization::updateDataIntern(envire::octomap::OcTree const& value)
 {
     tree = value;
     reloadTree();
 }
 
-void OcTreeVisualization::updateDataIntern(envire::type::AbstractOcTreePtr const& value)
+void OcTreeVisualization::updateDataIntern(envire::octomap::AbstractOcTreePtr const& value)
 {
     tree.setData(value);
     reloadTree();
