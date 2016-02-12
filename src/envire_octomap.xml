@@ -1,0 +1,10 @@
+<library path="envire_octomap">
+  <class class_name="envire::octomap::OcTree" base_class_name="envire::core::ItemBase">
+    <description>Octomap OcTree plugin</description>
+    <associations>
+      <class class_name="boost::shared_ptr<octomap::AbstractOcTree>"></class>
+      <class class_name="octomap::AbstractOcTree"></class>
+      <class class_name="octomap::OcTree"></class>
+    </associations>
+  </class>
+</library>
