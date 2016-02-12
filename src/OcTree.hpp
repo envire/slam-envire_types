@@ -15,7 +15,7 @@ namespace envire { namespace octomap
 
     class OcTree : public envire::core::Item< AbstractOcTreePtr >
     {
-        ENVIRE_PLUGIN_HEADER(OcTree)
+        ENVIRE_PLUGIN_HEADER(envire::octomap::OcTree)
     };
 
 }}
