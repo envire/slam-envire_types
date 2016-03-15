@@ -9,8 +9,8 @@
 namespace vizkit3d
 {
     class OcTreeVisualization
-        : public vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>
-        , public vizkit3d::VizPluginAddType< boost::shared_ptr<octomap::AbstractOcTree> >
+        : public vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >
+        , public vizkit3d::VizPluginAddType< envire::octomap::OcTree >
         , boost::noncopyable
     {
     Q_OBJECT
@@ -25,9 +25,9 @@ namespace vizkit3d
         ~OcTreeVisualization();
 
         Q_INVOKABLE void updateData(envire::octomap::OcTree const &sample)
-        {vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>::updateData(sample);}
+        {vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >::updateData(sample);}
         Q_INVOKABLE void updateData(boost::shared_ptr<octomap::AbstractOcTree> const &sample)
-        {vizkit3d::Vizkit3DPlugin<envire::octomap::OcTree>::updateData(sample);}
+        {vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >::updateData(sample);}
 
     public slots:
         bool getShowOccupied() {return show_occupied;}
