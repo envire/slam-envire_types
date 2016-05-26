@@ -16,8 +16,11 @@ namespace envire { namespace octomap
     class OcTree : public envire::core::Item< AbstractOcTreePtr >
     {
         ENVIRE_PLUGIN_HEADER(envire::octomap::OcTree)
+        virtual const std::type_info* getTypeInfo() const override
+        {
+          return &typeid(envire::octomap::OcTree);
+        }
     };
-
 }}
 
 namespace boost { namespace serialization {
