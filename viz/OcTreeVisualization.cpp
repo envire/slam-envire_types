@@ -101,7 +101,7 @@ void OcTreeVisualization::updateMainNode ( osg::Node* node )
 
             if(new_tree)
             {
-                drawable->setOctree(tree.getData());
+                drawable->setOctree(tree);
                 new_tree = false;
             }
             else if(redraw)
@@ -113,15 +113,9 @@ void OcTreeVisualization::updateMainNode ( osg::Node* node )
     }
 }
 
-void OcTreeVisualization::updateDataIntern(envire::octomap::OcTree const& value)
+void OcTreeVisualization::updateDataIntern(boost::shared_ptr<octomap::AbstractOcTree> const& value)
 {
     tree = value;
-    reloadTree();
-}
-
-void OcTreeVisualization::updateDataIntern(envire::octomap::AbstractOcTreePtr const& value)
-{
-    tree.setData(value);
     reloadTree();
 }
 

@@ -4,13 +4,16 @@
 #include <boost/noncopyable.hpp>
 #include <vizkit3d/Vizkit3DPlugin.hpp>
 #include <osg/Geode>
-#include <envire_octomap/OcTree.hpp>
+
+namespace octomap
+{
+    class AbstractOcTree;
+}
 
 namespace vizkit3d
 {
     class OcTreeVisualization
         : public vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >
-        , public vizkit3d::VizPluginAddType< envire::octomap::OcTree >
         , boost::noncopyable
     {
     Q_OBJECT
@@ -24,8 +27,6 @@ namespace vizkit3d
         OcTreeVisualization();
         ~OcTreeVisualization();
 
-        Q_INVOKABLE void updateData(envire::octomap::OcTree const &sample)
-        {vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >::updateData(sample);}
         Q_INVOKABLE void updateData(boost::shared_ptr<octomap::AbstractOcTree> const &sample)
         {vizkit3d::Vizkit3DPlugin< boost::shared_ptr<octomap::AbstractOcTree> >::updateData(sample);}
 
@@ -42,13 +43,12 @@ namespace vizkit3d
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
         virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(envire::octomap::OcTree const& value);
-        virtual void updateDataIntern(envire::octomap::AbstractOcTreePtr const& value);
+        virtual void updateDataIntern(boost::shared_ptr<octomap::AbstractOcTree> const& value);
         void reloadTree() {new_tree = true; setDirty();}
         void redrawTree() {redraw = true; setDirty();}
         
     private:
-        envire::octomap::OcTree tree;
+        boost::shared_ptr<octomap::AbstractOcTree> tree;
         bool show_occupied;
         bool show_freespace;
         int max_depth;
