@@ -1,4 +1,4 @@
 #include "OcTree.hpp"
-#define BOOST_SERIALIZATION_DYN_LINK 1
+#include <envire_core/plugin/Plugin.hpp>
 
-ENVIRE_REGISTER_PLUGIN( envire::octomap::OcTree )
+ENVIRE_REGISTER_ITEM( boost::shared_ptr<octomap::AbstractOcTree> )
