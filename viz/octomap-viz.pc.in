@@ -7,6 +7,6 @@ Name: envire_octomap-viz
 Description: VizKit plugin for the envire_octomap library
 Requires: envire_octomap @PKGCONFIG_DEPS@
 Version: @PROJECT_VERSION@
-Libs: -L${libdir} -lenvire_octomap-viz
+Libs: -L${libdir} -loctomap-viz
 Cflags: -I${includedir}
 
