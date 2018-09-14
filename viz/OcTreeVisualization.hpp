@@ -48,6 +48,7 @@ namespace vizkit3d
     Q_PROPERTY(bool ShowFreespace READ getShowFreespace WRITE setShowFreespace)
     Q_PROPERTY(int MaxTreeDepth READ getTreeMaxDepth WRITE setTreeMaxDepth)
     Q_PROPERTY(double AlphaOccupiedLevel READ getAlphaOccupiedLevel WRITE setAlphaOccupiedLevel)
+    Q_PROPERTY(QStringList ColorMode READ getColorModes WRITE setColorModes)
 
     public:
         OcTreeVisualization();
@@ -65,6 +66,8 @@ namespace vizkit3d
         int getTreeMaxDepth() {return max_depth;}
         bool getAlphaOccupiedLevel() {return alpha_level;}
         void setAlphaOccupiedLevel(double alpha_level) {this->alpha_level = alpha_level; redrawTree();}
+        QStringList getColorModes() {return color_modes;}
+        void setColorModes(QStringList color_mode) {this->color_modes = color_mode; redrawTree();}
 
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
@@ -81,6 +84,8 @@ namespace vizkit3d
         double alpha_level;
         bool new_tree;
         bool redraw;
+        QStringList color_modes;
+        std::map<QString, unsigned> color_mode_map;
     };
 }
 #endif

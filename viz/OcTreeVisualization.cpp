@@ -95,6 +95,15 @@ OcTreeVisualization::OcTreeVisualization()
     alpha_level = 0.8;
     new_tree = false;
     redraw = false;
+    color_modes.append("FLAT");
+    color_modes.append("PRINTOUT");
+    color_modes.append("COLOR_HEIGHT");
+    color_modes.append("GRAY_HEIGHT");
+    color_modes.append("SEMANTIC");
+    for(QStringList::iterator it = color_modes.begin(); it != color_modes.end(); it++)
+    {
+        color_mode_map[*it] = color_modes.indexOf(*it);
+    }
 }
 
 OcTreeVisualization::~OcTreeVisualization()
@@ -124,6 +133,7 @@ void OcTreeVisualization::updateMainNode ( osg::Node* node )
             drawable->drawer.enableFreespace(show_freespace);
             drawable->drawer.setAlphaOccupied(alpha_level);
             drawable->drawer.setMax_tree_depth(max_depth);
+            drawable->drawer.setColorMode(static_cast<octomap::SceneObject::ColorMode>(color_mode_map[color_modes.front()]));
 
             if(new_tree)
             {
