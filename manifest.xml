@@ -35,4 +35,6 @@
   <depend package="base/types" />
   <depend package="envire/envire_core" />
   <depend package="slam/octomap" />
+  <depend package="gui/vizkit3d" optional="1" />
+  <depend package="libqglviewer" optional="1" />
 </package>
