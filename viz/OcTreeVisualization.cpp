@@ -64,7 +64,7 @@ public:
 
     virtual void drawImplementation(osg::RenderInfo&) const {drawer.draw();}
 
-    virtual osg::BoundingBox computeBound() const
+    virtual osg::BoundingBox computeBoundingBox() const
     {
         osg::BoundingBox bbox;
         if(tree.get() != NULL)
